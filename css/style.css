@@ -453,6 +453,27 @@ h1 span {
     text-decoration: underline;
 }
 
+.member__left__image,
+.member__right__image {
+    -webkit-transform: rotate(0) scale(1);
+    transform: rotate(0) scale(1);
+}
+
+.member__left__image:hover {
+    -webkit-transform: rotate(15deg) scale(1.4);
+    transform: rotate(-2deg) scale(1.02);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+
+.member__right__image:hover {
+    -webkit-transform: rotate(15deg) scale(1.4);
+    transform: rotate(2deg) scale(1.02);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
 .member__left {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -539,7 +560,7 @@ h1 span {
 }
 
 .discography h2:hover {
-    transform: scale(1.10); 
+    transform: scale(1.10);
     transition: all 0.5s;
     text-shadow: 0 0 5px rgba(227, 137, 137, 0.586), 0 0 10px rgba(255, 255, 255, 0.225);
 }
@@ -548,16 +569,19 @@ h1 span {
     display: grid;
     position: relative;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    margin-bottom: 20rem;
+    grid-gap: 20px;
 }
 
-.discography__cds__covers {
-    padding: 20px;
-    text-align: center;
+.discography__cds__cover {
+    position: relative;
+    display: inline-block;
 }
 
-.discography__cds img{
+.discography__cds span {
+    color: white;
+}
+
+.discography__cds img {
     cursor: pointer;
 }
 
@@ -565,33 +589,101 @@ h1 span {
     opacity: 0.6;
 }
 
+.discography__cds__cover__hover {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.discography__cds__cover__hover p {
+    margin-bottom: 1rem;
+    font-size: 70%;
+}
+
+.discography__cds__cover:hover .discography__cds__cover__hover {
+    opacity: 1;
+}
+
+.separatorgif {
+    display: flex;
+    justify-content: center;
+    scale: 0.8;
+    opacity: 0.7;
+    margin-top: 2rem;
+}
+
 /*albums*/
+
+.description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
 .album {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
+    gap: 2rem;
     max-width: 80%;
-    background-color: #7b767637;
     margin: 20px;
     padding: 20px;
 }
 
+.album_info {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.cover {
+    width: 50vh;
+    height: auto;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    -webkit-transition: .3s ease-in-out;
+    transition: .2s ease-in-out;
+}
+
+.cover:hover {
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+}
+
 .minialbums h1,
 .digitalsingles h1 {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 700;
     font-style: oblique;
     font-variant: small-caps;
     color: #762020;
     display: inline;
-    text-shadow: 0 0 5px rgba(227, 137, 137, 0.586), 0 0 10px rgba(255, 255, 255, 0.225);
+    letter-spacing: 3px;
+    text-transform: lowercase;
+    font-weight: 800;
+}
+
+.minialbums h1:hover,
+.digitalsingles h1:hover {
+    transition: all 0.5s;
+    text-shadow: 0 0 5px rgba(83, 9, 9, 0.586), 0 0 10px rgba(255, 255, 255, 0.256);
 }
 
 .minialbums p,
 .digitalsingles p {
     color: #bfb6b6;
-    font-size: 18px;
+    font-size: 15px;
+    text-align: justify;
 }
 
 .digitalsingles a {
@@ -604,9 +696,16 @@ h1 span {
 
 .minialbums ol {
     list-style-type: upper-roman;
-    font-size: 18px;
+    font-size: 15px;
     color: #bfb6b6;
     margin: 10px 100px;
+}
+
+.separador {
+    display: flex;
+    justify-content: center;
+    scale: 0.3;
+    opacity: 0.7;
 }
 
 /***** Contact us *****/
@@ -718,7 +817,114 @@ footer ul li a:hover {
 
 /*****responsive*****/
 
+/*discography*/
 
+
+@media (max-width: 1024px) {
+    .redes-sociales {
+        z-index: 1;
+    }
+    
+    .discography__cds {
+        display: grid;
+        position: relative;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+    }
+
+    .cover {
+        width: 40vh;
+        height: auto;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        -webkit-transition: .3s ease-in-out;
+        transition: .2s ease-in-out;
+    }
+
+    .album_info h1 {
+        font-size: 32px;
+    }
+
+    .minialbums ol {
+        list-style-type: upper-roman;
+        font-size: 15px;
+        color: #bfb6b6;
+        margin: 10px 50px;
+    }
+
+    .album {
+        display: flex;
+        align-items: center;
+        max-width: 80%;
+    }
+
+    .minialbums h1:first-child {
+        margin-top: 0;
+    }
+
+    .separatorgif {
+        display: flex;
+        justify-content: center;
+;
+        opacity: 0.7;
+        margin-top: 2rem;
+    }
+
+}
+
+@media (max-width: 770px) {
+    .discography__cds {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 5px;
+        width: 80%;
+    }
+    
+    .description {
+        display: inline;
+        width: 100%;
+    }
+    
+    .album {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 40px;
+    }
+
+    .album_info {
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    .separatorgif {
+        display: flex;
+        justify-content: center;
+        scale: 0.5;
+        opacity: 0.7;
+        margin-top: 2rem;
+    }
+
+    .separador {
+        display: flex;
+        justify-content: flex-start;
+        scale: 0.3;
+        opacity: 0.7;
+    }
+}
+
+@media (max-width: 550px) {
+    .separador {
+        display: flex;
+        justify-content: center;
+        scale: 0.3;
+        opacity: 0.7;
+    }
+}
 
 /*news*/
 
@@ -738,6 +944,17 @@ footer ul li a:hover {
     .grid-container {
         max-width: 90%;
         grid-gap: 10px;
+    }
+}
+
+@media (max-width: 850px) {
+    .outer-grid {
+        grid-gap: 10px;
+    }
+
+    .grid-container {
+        max-width: 85%;
+        grid-gap: 1px;
     }
 }
 
@@ -777,7 +994,7 @@ footer ul li a:hover {
 }
 
 /*navbar*/
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 551px) {
 
     .shop,
     .redes-sociales {
@@ -815,9 +1032,10 @@ footer ul li a:hover {
         top: 0;
         right: 0;
         bottom: 0;
-        background-color: #1c1c1c;
+        background-color: #3b1717;
         padding: 2rem;
         box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+        z-index: 1;
     }
 
     .nav.visible {
