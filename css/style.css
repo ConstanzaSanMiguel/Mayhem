@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     cursor: default;
+    box-sizing: border-box;
 }
 
 body {
@@ -34,7 +35,6 @@ ul {
     position: fixed;
     top: 0;
     left: 0;
-    cursor: pointer;
 }
 
 .red-social {
@@ -47,6 +47,7 @@ ul {
     border-radius: 50%;
     text-align: center;
     line-height: 40px;
+    cursor: pointer;
 }
 
 .red-social i {
@@ -75,6 +76,7 @@ ul {
     border-radius: 50%;
     text-align: center;
     line-height: 40px;
+    cursor: pointer;
 }
 
 .shop-cart i {
@@ -104,7 +106,7 @@ ul {
 }
 
 .header {
-    background-color: #65272751;
+    border-bottom: 4px solid #3b1717;
 }
 
 header nav {
@@ -181,26 +183,29 @@ header nav ul li a {
 /***** Main *****/
 
 #bgimage {
-    background-image: url(../images/indexbg1.jpg);
-    height: 100%;
+    min-height: 100vh;
+    background-image: url(../images/indexbg2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.7;
 }
 
 .main__home {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    text-align: start;
+    align-items: start;
+    line-height: 1;
+    font-size: 25px;
+    text-transform: uppercase;
+    color: #ececec;
+    margin-left: 1rem;
+    -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.5)));
 }
 
-h1 {
-    text-align: center;
-    line-height: 150%;
-    font-size: 24px;
-    color: #7b7676;
-}
-
-h1:first-child {
-    margin-top: 100px;
-    ;
+.main__home:first-child {
+    margin-top: 30px;
 }
 
 h1 span {
@@ -347,32 +352,30 @@ h1 span {
 .aboutus h2 {
     text-align: center;
     text-transform: uppercase;
-    margin: 60px 0;
+    margin: 60px 0 30px 0;
     font-size: 42px;
     color: #bfb6b6;
     text-shadow: 0 0 15px rgba(227, 137, 137, 0.8), 0 0 10px rgba(255, 255, 255, .5);
 }
 
-.band div {
+.band .band__pic {
     display: flex;
     justify-content: center;
 }
 
 .band img {
-    width: 800px;
+    width: 95%;
     height: auto;
     margin-bottom: 20px;
 }
 
-.band p {
+.band .band__description {
     color: #bfb6b6;
     letter-spacing: 0.4px;
     word-spacing: -0.6px;
-    padding-left: 400px;
-    padding-right: 400px;
     text-align: center;
     font-size: 14px;
-    margin-top: 20px;
+    margin: 20px 5rem 0 5rem;
 }
 
 #members {
@@ -398,7 +401,7 @@ h1 span {
     color: #bfb6b6;
     letter-spacing: 0.4px;
     word-spacing: -0.6px;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .member__imageroll {
@@ -406,7 +409,12 @@ h1 span {
     justify-content: center;
     background-color: #bfb6b6;
     border: solid 8px #652727;
-    margin-bottom: 50px;
+    margin-bottom: 10rem;
+}
+
+.member__imageroll a {
+    display: flex;
+    justify-content: space-around;
 }
 
 .member__imageroll img {
@@ -414,29 +422,36 @@ h1 span {
     padding: 8px;
 }
 
-.aboutus .member p {
-    margin: 10px 10px;
+.member__left {
+    display: flex;
+    margin-bottom: 8rem;
 }
 
-.member__left__description p:first-child,
-.member__right__description p:first-child {
-    margin-top: 35px;
+.member__right {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 8rem;
+}
+
+.aboutus .member p {
+    margin: 10px 10px;
 }
 
 .member__left__description h5,
 .member__right__description h5 {
     color: #652727;
     text-decoration: underline;
-    font-size: 17px;
-    margin-left: 100px;
-    margin-right: 100px;
+    font-size: 18px;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-bottom: 1rem;
 }
 
 .member__right__list,
 .member__left__list {
     margin-left: 100px;
     margin-right: 100px;
-    font-size: 16px;
+    font-size: 18px;
     color: #7b7676;
     list-style-type: armenian;
 }
@@ -453,6 +468,14 @@ h1 span {
     text-decoration: underline;
 }
 
+.member__left__image {
+    margin-left: 5rem;
+}
+
+.member__right__image {
+    margin-right: 5rem;
+}
+
 .member__left__image,
 .member__right__image {
     -webkit-transform: rotate(0) scale(1);
@@ -466,67 +489,11 @@ h1 span {
     transition: .3s ease-in-out;
 }
 
-
 .member__right__image:hover {
     -webkit-transform: rotate(15deg) scale(1.4);
     transform: rotate(2deg) scale(1.02);
     -webkit-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
-}
-
-.member__left {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 30% 1fr 1fr 1fr;
-    grid-template-areas:
-        "photo-left description-left description-left"
-        "photo-left list-left        list-left"
-        "photo-left list-left        list-left"
-        "photo-left list-left        list-left";
-    margin-left: 50px;
-}
-
-.member__left__image {
-    grid-area: photo-left;
-}
-
-.mmember__left__description {
-    grid-area: description-left;
-}
-
-.member__left__list {
-    grid-area: list-left;
-}
-
-.member__right {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 25% 25% 2fr 1fr;
-    grid-template-areas:
-        "description-right description-right photo-right"
-        "list-right        list-right        photo-right"
-        "list-right        list-right        photo-right"
-        "list-right        list-right        photo-right";
-    margin-right: 50px;
-}
-
-.member__right__image {
-    grid-area: photo-right;
-}
-
-.member__right__description {
-    grid-area: description-right;
-}
-
-.member__right__list {
-    grid-area: list-right;
-}
-
-.member__right__image img,
-.member__left__image img {
-    height: 70%;
-    width: auto;
-    padding: 20px;
 }
 
 /*right*/
@@ -639,6 +606,10 @@ h1 span {
     padding: 20px;
 }
 
+.album:last-child {
+    margin-bottom: 10rem;
+}
+
 .album_info {
     display: flex;
     flex-direction: column;
@@ -658,6 +629,11 @@ h1 span {
 .cover:hover {
     -webkit-filter: grayscale(0);
     filter: grayscale(0);
+}
+
+.minialbums,
+.digitalsingles {
+    margin-left: 10rem;
 }
 
 .minialbums h1,
@@ -682,7 +658,7 @@ h1 span {
 .minialbums p,
 .digitalsingles p {
     color: #bfb6b6;
-    font-size: 15px;
+    font-size: 18px;
     text-align: justify;
 }
 
@@ -696,7 +672,7 @@ h1 span {
 
 .minialbums ol {
     list-style-type: upper-roman;
-    font-size: 15px;
+    font-size: 18px;
     color: #bfb6b6;
     margin: 10px 100px;
 }
@@ -817,77 +793,246 @@ footer ul li a:hover {
 
 /*****responsive*****/
 
-/*discography*/
+/*general*/
+@media (max-width: 320px) {
+    #bandlogo {
+        width: 20rem;
+        height: auto;
+        margin-top: 50px;
+    }
+}
 
+/*home*/
+@media (max-width: 1024px) {
+    .main__home {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 550px) {
+    #bgimage {
+        min-height: 100vw;
+        background-size: contain;
+        align-items: center;
+    }
+
+    .main__home {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 320px) {
+    #bgimage {
+        background-size: 60vh;
+        background-repeat: repeat-y;
+    }
+
+    .main__home {
+        font-size: 13px;
+    }
+}
+
+.footer {
+    bottom: 0;
+}
+
+/*about us*/
+
+@media (max-width: 1024px) {
+
+    .member__left__image img,
+    .member__right__image img {
+        width: 30rem;
+    }
+
+    .aboutus p,
+    .member__right__list,
+    .member__left__list {
+        font-size: 15px;
+    }
+
+    .member__left__description h5,
+    .member__right__description h5 {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .aboutus h2 {
+        font-size: 35px;
+    }
+
+    .band__pic {
+        width: 99%;
+    }
+
+    .aboutus p,
+    .member__right__list,
+    .member__left__list,
+    .member__left__description h5,
+    .member__right__description h5 {
+        font-size: 14px;
+        text-align: center;
+        list-style-type: none;
+    }
+
+    .member__imageroll {
+        display: grid;
+        max-width: 90%;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0 3rem;
+    }
+
+    .member__imageroll img {
+        width: 90%;
+        padding: 8px;
+    }
+
+    .member__left,
+    .member__right {
+        flex-direction: column;
+        margin: 5rem 8rem;
+    }
+
+    .member__left__image img,
+    .member__right__image img {
+        width: 90%;
+    }
+
+    .member__right__image img {
+        margin: 0 4rem;
+    }
+
+    .aboutus .member__right__description {
+        text-align: center;
+    }
+
+    .bullets-right {
+        text-align: center;
+        list-style-type: none;
+        direction: ltr;
+    }
+}
+
+@media (max-width: 551px) {
+
+    .member__left,
+    .member__right {
+        margin: 5rem 1.5rem 5rem 0;
+    }
+}
+
+@media (max-width: 320px) {
+    .aboutus h2 {
+        font-size: 25px;
+    }
+
+    .band .band__description {
+        margin: 20px 2rem 0 2rem;
+    }
+
+    .member__imageroll {
+        display: none;
+    }
+
+    .aboutus p,
+    .member__left__description h5,
+    .member__right__description h5 {
+        font-size: 12px;
+    }
+
+    .member__left,
+    .member__right {
+        margin: 0;
+    }
+
+    .member__right__list,
+    .member__left__list {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        font-size: 12px;
+    }
+
+    .member__left__image {
+        width: 60%;
+        -webkit-transform: none;
+        transform: none;
+        margin-top: 4rem;
+    }
+
+    .member__right__image {
+        width: 60%;
+        -webkit-transform: none;
+        transform: none;
+        margin-top: 4rem;
+    }
+
+    .member__left__image:hover,
+    .member__right__image:hover {
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    .member__right:last-child {
+        margin-bottom: 5rem;
+    }
+}
+
+/*discography*/
 
 @media (max-width: 1024px) {
     .redes-sociales {
         z-index: 1;
     }
-    
+
     .discography__cds {
-        display: grid;
-        position: relative;
         grid-template-columns: repeat(2, 1fr);
-        grid-gap: 20px;
     }
 
     .cover {
         width: 40vh;
-        height: auto;
-        -webkit-filter: grayscale(100%);
-        filter: grayscale(100%);
-        -webkit-transition: .3s ease-in-out;
-        transition: .2s ease-in-out;
+    }
+
+    .minialbums,
+    .digitalsingles {
+        margin-left: 10rem;
     }
 
     .album_info h1 {
-        font-size: 32px;
+        font-size: 38px;
     }
 
     .minialbums ol {
-        list-style-type: upper-roman;
-        font-size: 15px;
-        color: #bfb6b6;
         margin: 10px 50px;
-    }
-
-    .album {
-        display: flex;
-        align-items: center;
-        max-width: 80%;
     }
 
     .minialbums h1:first-child {
         margin-top: 0;
     }
-
-    .separatorgif {
-        display: flex;
-        justify-content: center;
-;
-        opacity: 0.7;
-        margin-top: 2rem;
-    }
-
 }
 
-@media (max-width: 770px) {
+@media (max-width: 771px) {
     .discography__cds {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 5px;
-        width: 80%;
     }
-    
+
+    .minialbums,
+    .digitalsingles {
+        margin-left: 2rem;
+    }
+
     .description {
         display: inline;
         width: 100%;
     }
-    
+
+    .cover {
+        width: 130%;
+    }
+
     .album {
         display: flex;
         flex-direction: column;
@@ -899,6 +1044,7 @@ footer ul li a:hover {
         display: flex;
         flex-direction: column;
         height: fit-content;
+        margin-left: 5rem;
     }
 
     .separatorgif {
@@ -919,12 +1065,66 @@ footer ul li a:hover {
 
 @media (max-width: 550px) {
     .separador {
-        display: flex;
         justify-content: center;
-        scale: 0.3;
-        opacity: 0.7;
+    }
+
+    .minialbums,
+    .digitalsingles {
+        margin-left: none;
+        ;
+    }
+
+    .cover {
+        margin-left: 1.5rem;
+    }
+
+    .album {
+        margin: 0;
+        padding: 0;
+    }
+
+    .album_info {
+        margin-left: 1.5rem;
+    }
+
+    .album_info h1 {
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 10px;
     }
 }
+
+@media (max-width: 321px) {
+    .discography h2 {
+        font-size: 35px;
+    }
+
+    .discography__cds__cover img {
+        width: 100%;
+    }
+
+    .separatorgif {
+        scale: 0.3;
+    }
+
+    .cover {
+        margin-left: 2rem;
+        margin-right: 1rem;
+        width: 35vh;
+    }
+
+    .album_info {
+        width: 30vh;
+        margin-right: 2rem;
+    }
+
+    .album_info h1 {
+        width: 34vh;
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+}
+
 
 /*news*/
 
@@ -990,6 +1190,14 @@ footer ul li a:hover {
     .grid-item img {
         width: 100%;
         height: auto;
+    }
+}
+
+/*contact us*/
+
+@media (max-width: 320px) {
+    #country {
+        width: 80%;
     }
 }
 
