@@ -1,0 +1,80 @@
+/***** Header *****/
+.header__logo {
+    display: flex;
+    justify-content: center;
+}
+
+#bandlogo {
+    width: 25rem;
+    height: auto;
+    margin-top: 50px;    
+    cursor: pointer;
+}
+
+/*redes*/
+.redes-sociales {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.red-social {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    color: $GrisClaro;
+    background-color: rgba(255, 255, 255, 0.316);
+    margin: 5px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+
+    & i {
+        font-size: 20px;
+    }
+
+    &:hover {
+        background-color: $BordoOscuro;
+        color: #000;
+    }
+}
+
+/*shop*/
+    .shop {
+        position: fixed;
+        top: 0;
+        right: 0;
+    }
+
+    .shop-cart {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        color: $GrisClaro;
+        background-color: rgba(255, 255, 255, 0.316);
+        margin: 5px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+
+        & i {
+            font-size: 20px;
+        }
+
+        &:hover {
+            background-color: $BordoOscuro;
+            color: #000;
+        }
+    }
+    
+/*****responsive*****/
+
+    @media (max-width: 320px) {
+        #bandlogo {
+            width: 20rem;
+            height: auto;
+            margin-top: 50px;
+        }
+    }

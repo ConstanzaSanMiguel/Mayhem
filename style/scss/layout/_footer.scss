@@ -1,0 +1,52 @@
+/***** Footer *****/
+
+footer {
+    width: 100%;
+    bottom: 0;
+    background-color: #65272751;
+    text-align: center;
+    font-size: 12px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    & a {
+        text-decoration: none;
+        color: $GrisClaro;
+    }
+
+    & p {
+        color: $GrisClaro;
+    }    
+
+    & ul li a:hover {
+        color: $GrisOscuro;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+    }
+}
+
+/* top */
+
+.top {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    color: $GrisClaro;
+    background-color: $GrisOscuro;
+    margin: 5px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+
+    &-top i {
+        font-size: 15px;
+    }
+
+    &:hover {
+        background-color: $BordoOscuro;
+        color: #000;
+    }
+}

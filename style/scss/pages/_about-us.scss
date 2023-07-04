@@ -1,0 +1,334 @@
+/***** About us *****/
+
+.aboutus {
+    @include flex (column, center, center, wrap);
+
+    & h1 {
+        text-align: center;
+        text-transform: uppercase;
+        margin: 60px 0 30px 0;
+        font-size: 42px;
+        color: $GrisClaro;
+        text-shadow: 0 0 15px rgba(227, 137, 137, 0.8), 0 0 10px rgba(255, 255, 255, .5);
+    }
+
+    & p {
+        color: $GrisClaro;
+        letter-spacing: 0.4px;
+        word-spacing: -0.6px;
+        font-size: 20px;
+    }
+
+    & .member {
+        & p {
+            margin: 10px 10px;
+        }
+
+        & a {
+            font-weight: bolder;
+            text-decoration: none;
+            font-style: italic;
+            color: #7b7676;
+
+            &:hover {
+                color: #983f3f;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.band {
+    & .band__pic {
+        display: flex;
+        justify-content: center;
+    }
+
+    & img {
+        width: 95%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    & .band__description {
+        color: $GrisClaro;
+        letter-spacing: 0.4px;
+        word-spacing: -0.6px;
+        text-align: center;
+        font-size: 14px;
+        margin: 20px 5rem 0 5rem;
+    }
+}
+
+#members {
+    word-spacing: 0.6px;
+    animation: titilar 1s infinite;
+}
+
+@keyframes titilar {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0.8;
+    }
+}
+
+.member {
+    &__imageroll {
+        @include flex (row, center, center, nowrap);
+        background-color: $GrisClaro;
+        border: solid 8px $BordoOscuro;
+        margin-bottom: 10rem;
+
+        & a {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        & img {
+            width: 90%;
+            padding: 8px;
+        }
+    }
+
+    &__left {
+        display: flex;
+        margin-bottom: 8rem;
+
+        &__image {
+            margin-left: 5rem;
+            -webkit-transform: rotate(0) scale(1);
+            transform: rotate(0) scale(1);
+
+            &:hover {
+                -webkit-transform: rotate(15deg) scale(1.4);
+                transform: rotate(-2deg) scale(1.02);
+                -webkit-transition: .3s ease-in-out;
+                transition: .3s ease-in-out;
+            }
+        }
+
+        &__description h2 {
+            color: $BordoOscuro;
+            text-decoration: underline;
+            font-size: 18px;
+            margin-left: 5rem;
+            margin-right: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        &__list {
+            margin-left: 100px;
+            margin-right: 100px;
+            font-size: 18px;
+            color: #7b7676;
+            list-style-type: armenian;
+        }
+    }
+
+    &__right {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-bottom: 8rem;
+
+        &__image {
+            margin-right: 5rem;
+            -webkit-transform: rotate(0) scale(1);
+            transform: rotate(0) scale(1);
+
+            &:hover {
+                -webkit-transform: rotate(15deg) scale(1.4);
+                transform: rotate(2deg) scale(1.02);
+                -webkit-transition: .3s ease-in-out;
+                transition: .3s ease-in-out;
+            }
+        }
+
+        &__description {
+            @extend .member__left__description;
+        }
+
+        &__list {
+            @extend .member__left__list;
+        }
+    }
+}
+
+/*right*/
+.aboutus .member__right__description {
+    text-align: right;
+}
+
+.bullets-right {
+    text-align: right;
+    list-style-type: armenian;
+    direction: rtl;
+}
+
+/*****responsive*****/
+
+@media (max-width: 1024px) {
+
+    .member {
+
+        &__left,
+        &__right {
+            &__image img {
+                width: 30rem;
+            }
+
+            &__list {
+                font-size: 15px;
+            }
+
+            &__h2 {
+                font-size: 15px;
+            }
+        }
+    }
+
+    .aboutus p {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .band__pic {
+        width: 99%;
+    }
+
+    .aboutus {
+        & h1 {
+            font-size: 35px;
+        }
+
+        & p {
+            font-size: 14px;
+            text-align: center;
+            list-style-type: none;
+        }
+    }
+
+    .member {
+
+        &__left,
+        &__right {
+            flex-direction: column;
+            margin: 5rem 8rem;
+
+            &__list,
+            &__description h2 {
+                font-size: 14px;
+                text-align: center;
+                list-style-type: none;
+            }
+
+            &__image img {
+                width: 90%;
+            }
+        }
+
+        &__right__image {
+            margin-left: 0;
+        }
+
+        &__imageroll {
+            display: grid;
+            max-width: 90%;
+            grid-template-columns: repeat(2, 1fr);
+            margin: 0 3rem;
+
+            & img {
+                width: 90%;
+                padding: 8px;
+            }
+        }
+    }
+
+    .member__right__image img {
+        margin: 0 4rem;
+    }
+
+    .aboutus .member__right__description {
+        text-align: center;
+    }
+
+    .bullets-right {
+        text-align: center;
+        list-style-type: none;
+        direction: ltr;
+    }
+}
+
+@media (max-width: 551px) {
+
+    .member {
+
+        &__left,
+        &__right {
+            margin: 5rem 1.5rem 5rem 0;
+        }
+    }
+}
+
+@media (max-width: 320px) {
+
+    .aboutus {
+        & h1 {
+            font-size: 25px;
+        }
+
+        & p {
+            font-size: 12px;
+        }
+    }
+
+    .band {
+        & .band__description {
+            margin: 20px 2rem 0 2rem;
+        }
+    }
+
+    .member {
+        &__imageroll {
+            display: none;
+        }
+
+        &__left,
+        &__right {
+            margin: 0;
+
+            &__description h2 {
+                font-size: 12px;
+            }
+
+            &__list {
+                margin-left: 1rem;
+                margin-right: 1rem;
+                font-size: 12px;
+            }
+
+            &__image {
+                width: 60%;
+                -webkit-transform: none;
+                transform: none;
+                margin-top: 4rem;
+
+                &:hover {
+                    -webkit-transform: none;
+                    transform: none;
+                }
+            }
+        }
+    }
+
+    .member__right:last-child {
+        margin-bottom: 5rem;
+    }
+}

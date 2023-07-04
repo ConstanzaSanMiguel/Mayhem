@@ -1,0 +1,27 @@
+.button {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+
+    & input[type=submit],
+    & input[type=reset] {
+        padding: 10px;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        background-color: $GrisClaro;
+        color: $GrisOscuro;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.06s ease;
+
+        &:hover {
+            background-color: $BordoClaro;
+            color: $GrisClaro;
+            transition-delay: 0.1s;
+            box-shadow: 0 0 18px rgba(203, 8, 8, 0.8), 0 0 10px rgba(255, 255, 255, .5);
+        }
+    }
+}
+
+

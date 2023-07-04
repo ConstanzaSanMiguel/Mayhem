@@ -1,0 +1,162 @@
+/***** News *****/
+
+.mainnews {
+    display: flex;
+}
+
+#newsgif {
+    position: sticky;
+    left: 0;
+    top: 0;
+    width: 240px;
+}
+
+.outer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(20rem, 1fr));
+    grid-gap: 20px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+    & h2 {
+        font-variant: small-caps;
+        text-transform: capitalize;
+        text-align: center;
+        font-size: 30px;
+        color: $BordoClaro;
+        margin-bottom: 20px;
+    }
+
+    & a {
+        font-style: italic;
+        font-weight: 500;
+        color: $BordoOscuro;
+        cursor: pointer;
+    }
+}
+
+.grid-container {
+    width: 90%;
+    height: auto;
+    overflow: hidden;
+    background-color: $GrisClaro;
+    color: #212121;
+    padding: 20px;
+    text-align: center;
+
+    & p,
+    & a {
+        font-size: 14px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+}
+
+.little-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(50px, 1fr));
+    grid-template-rows: repeat(2, minmax(50px, 1fr));
+    column-gap: 10px;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 306px;
+}
+
+.image {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.lyrics {
+    text-align: center;
+    font-size: 14px;
+    margin: 10px;
+    border-style: dashed;
+    border-width: 2px;
+    border-color: #983f3f;
+    border-radius: 20px;
+    padding: 20px;
+
+    & p {
+        margin: 0;
+    }
+}
+
+.hashtag {
+    font-style: italic;
+    font-weight: 200;
+    color: #983f3f;
+
+    &:hover {
+        color: #212121;
+        cursor: pointer;
+    }
+}
+
+/*****responsive*****/
+
+@media (max-width: 1368px) {
+    #newsgif {
+        width: 15rem;
+    }
+}
+
+@media (max-width: 1080px) {
+
+    #newsgif,
+    .shop {
+        display: none;
+    }
+
+    .grid-container {
+        max-width: 90%;
+        grid-gap: 10px;
+    }
+}
+
+@media (max-width: 850px) {
+    .outer-grid {
+        grid-gap: 10px;
+    }
+
+    .grid-container {
+        max-width: 85%;
+        grid-gap: 1px;
+    }
+}
+
+
+@media (max-width: 780px) {
+
+    #newsgif {
+        display: none;
+    }
+
+    .redes-sociales ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .outer-grid {
+        @include flex (column, center, center, wrap);
+    }
+
+    .grid-container {
+        width: 85%;
+    }
+
+    .little-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(50%px, 1fr));
+        grid-template-rows: repeat(2, minmax(50%, 1fr));
+        column-gap: 10px;
+    }
+
+    .grid-item img {
+        width: 100%;
+        height: auto;
+    }
+}

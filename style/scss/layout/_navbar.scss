@@ -1,0 +1,146 @@
+/*navbar*/
+
+.header {
+    border-bottom: 4px solid #3b1717;
+
+    & nav {
+        text-align: center;
+        padding: 15px;
+
+        & a {
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            color: $GrisClaro;
+        }
+    }
+
+    & ul {
+        justify-content: space-around;
+        text-transform: uppercase;
+
+        & li a {
+            color: $GrisClaro;
+            text-decoration: none;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+    }
+}
+
+.hover {
+    display: inline-block;
+    position: relative;
+    letter-spacing: 2px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: white;
+        transform-origin: bottom right;
+        transition: transform 0.20s ease-out;
+    }
+
+    &:hover::before {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+}
+
+.nav-list {
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+
+    & li a {
+        text-decoration: none;
+    }
+}
+
+#button-right {
+    display: flex;
+    justify-content: end;
+    padding: 1rem;
+}
+
+.abrir-menu,
+.cerrar-menu {
+    display: none;
+    right: 0;
+}
+
+.hamburguesa {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    & li {
+        margin-right: 10px;
+
+        & a {
+            text-decoration: none;
+            color: white;
+        }
+    }
+}
+
+/*****responsive*****/
+
+@media screen and (max-width: 551px) {
+
+    .shop,
+    .redes-sociales {
+        display: none;
+    }
+
+    .hamburguesa {
+        display: block;
+    }
+
+    .abrir-menu,
+    .cerrar-menu {
+        display: block;
+        border: 0;
+        font-size: 1.40rem;
+        background-color: transparent;
+        color: #ececec;
+    }
+
+    .nav {
+        opacity: 0;
+        visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        gap: 1rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #3b1717;
+        padding: 2rem;
+        box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+        z-index: 1;
+
+        &.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        &-list {
+            flex-direction: column;
+            align-items: end;
+        }
+        & li a {
+            color: #ecececec;
+        }
+    }
+
+
+}
