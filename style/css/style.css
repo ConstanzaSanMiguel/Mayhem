@@ -42,7 +42,7 @@ ul {
 /***** Main *****/
 #bgimage {
   min-height: 100vh;
-  background-image: url(../../../images/indexbg2.jpg);
+  background-image: url(../images/indexbg2.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -812,7 +812,7 @@ h1 span {
 }
 /***** Contact us *****/
 .contact {
-  background-image: url("../../../images/bg.jpg");
+  background-image: url("../images/bg.jpg");
   background-color: #212121;
   background-size: cover;
   margin-bottom: 20px;
