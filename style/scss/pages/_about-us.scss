@@ -94,6 +94,7 @@
         & img {
             width: 90%;
             padding: 8px;
+            cursor: pointer;        
         }
     }
 
@@ -111,6 +112,10 @@
                 transform: rotate(-2deg) scale(1.02);
                 -webkit-transition: .3s ease-in-out;
                 transition: .3s ease-in-out;
+            }
+
+            & img {
+                cursor: pointer;
             }
         }
 
@@ -147,6 +152,10 @@
                 transform: rotate(2deg) scale(1.02);
                 -webkit-transition: .3s ease-in-out;
                 transition: .3s ease-in-out;
+            }
+
+            & img {
+                cursor: pointer;
             }
         }
 

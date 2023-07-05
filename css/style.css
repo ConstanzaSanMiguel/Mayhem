@@ -214,6 +214,7 @@ h1 span {
 .member__imageroll img {
   width: 90%;
   padding: 8px;
+  cursor: pointer;
 }
 .member__left {
   display: flex;
@@ -229,6 +230,9 @@ h1 span {
   transform: rotate(-2deg) scale(1.02);
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
+}
+.member__left__image img {
+  cursor: pointer;
 }
 .member__left__description h2, .member__right__description h2 {
   color: #652727;
@@ -260,6 +264,9 @@ h1 span {
   transform: rotate(2deg) scale(1.02);
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
+}
+.member__right__image img {
+  cursor: pointer;
 }
 /*right*/
 .aboutus .member__right__description {
