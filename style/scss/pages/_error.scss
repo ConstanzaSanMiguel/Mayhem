@@ -28,13 +28,31 @@
         }
     }
 
-    & a {  
+    & a {
         text-decoration: overline underline white;
         text-underline-offset: 8px;
         color: #ececec;
         letter-spacing: 1.8px;
         cursor: pointer;
     }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.blink {
+    animation: blink 1s infinite;
 }
 
 /*****responsive*****/
@@ -62,7 +80,7 @@
 
     .errorimage__message {
         font-size: 13px;
-    
+
         & a {
             text-underline-offset: 4px;
         }
