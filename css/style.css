@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Barlow", sans-serif;
   background-color: black;
@@ -181,7 +185,8 @@ h1 span {
   margin: 20px 5rem 0 5rem;
 }
 
-#members {
+.members_effect {
+  color: #E5383B;
   word-spacing: 0.6px;
   animation: titilar 1s infinite;
 }
@@ -373,7 +378,6 @@ h1 span {
     font-size: 12px;
   }
   .member__left__image, .member__right__image {
-    width: 60%;
     -webkit-transform: none;
     transform: none;
     margin-top: 4rem;
@@ -381,6 +385,20 @@ h1 span {
   .member__left__image:hover, .member__right__image:hover {
     -webkit-transform: none;
     transform: none;
+  }
+  .member__left {
+    width: 92%;
+  }
+  .member__left__image {
+    width: 100%;
+    margin-left: 1.5rem;
+  }
+  .member__right__image {
+    width: 92%;
+    margin-left: 1.5rem;
+  }
+  .member__right__image img {
+    margin: 0;
   }
   .member__right:last-child {
     margin-bottom: 5rem;
@@ -484,13 +502,16 @@ h1 span {
   }
 }
 @media (max-width: 1080px) {
-  #newsgif,
-  .shop {
-    display: none;
+  .outer-grid {
+    column-gap: 1px;
   }
   .grid-container {
-    max-width: 90%;
-    grid-gap: 10px;
+    max-width: 100%;
+    column-gap: 2px;
+  }
+  .grid-item img {
+    height: 110%;
+    padding: 16px 0;
   }
 }
 @media (max-width: 850px) {
@@ -529,6 +550,7 @@ h1 span {
   .grid-item img {
     width: 100%;
     height: auto;
+    padding: 0;
   }
 }
 /***** Discography *****/
@@ -799,12 +821,14 @@ h1 span {
     scale: 0.3;
   }
   .cover {
-    margin-left: 2rem;
+    margin-left: 1rem;
     margin-right: 1rem;
-    width: 35vh;
+    width: 40vh;
+  }
+  .album {
+    max-width: 90%;
   }
   .album_info {
-    width: 30vh;
     margin-right: 2rem;
   }
   .album_info h1 {

@@ -105,15 +105,18 @@
 }
 
 @media (max-width: 1080px) {
-
-    #newsgif,
-    .shop {
-        display: none;
+    .outer-grid {
+        column-gap: 1px;
     }
 
     .grid-container {
-        max-width: 90%;
-        grid-gap: 10px;
+        max-width: 100%;
+        column-gap: 2px;
+    }
+
+    .grid-item img {
+        height: 110%;
+        padding: 16px 0;
     }
 }
 
@@ -158,5 +161,6 @@
     .grid-item img {
         width: 100%;
         height: auto;
+        padding: 0;
     }
 }

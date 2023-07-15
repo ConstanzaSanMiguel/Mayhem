@@ -60,7 +60,8 @@
     }
 }
 
-#members {
+.members_effect {
+    color: #E5383B;
     word-spacing: 0.6px;
     animation: titilar 1s infinite;
 }
@@ -94,7 +95,7 @@
         & img {
             width: 90%;
             padding: 8px;
-            cursor: pointer;        
+            cursor: pointer;
         }
     }
 
@@ -324,7 +325,6 @@
             }
 
             &__image {
-                width: 60%;
                 -webkit-transform: none;
                 transform: none;
                 margin-top: 4rem;
@@ -337,7 +337,27 @@
         }
     }
 
-    .member__right:last-child {
-        margin-bottom: 5rem;
+    .member__left {
+        width: 92%;
+
+        &__image {
+            width: 100%;
+            margin-left: 1.5rem;
+        }
+    }
+
+    .member__right {
+        &__image {
+            width: 92%;
+            margin-left: 1.5rem;
+
+            & img {
+                margin: 0;
+            }
+        }
+
+        &:last-child {
+            margin-bottom: 5rem;
+        }
     }
 }
