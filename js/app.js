@@ -15,6 +15,8 @@ function precioTotal(precioProducto, IVA) {
     return precioConIVA;
 }
 
+const today = new Date();
+
 //Inicio
 alert("Welcome to Mayhem shop! We hope you find what you came looking for!")
 alert("Please choose the product you want to purchase.")
@@ -47,9 +49,9 @@ if (userInput !== null) {
             }
         } while (!email.includes('@'));
 
-        // Envío de datos
+         // Envío de datos
         alert(`Thank you ${nombre}! An email confirmation was sent to ${email} to confirm the purchase.`);
-        console.log(`Data`)
+        console.log(`Data on ${today.toLocaleDateString()}`);
         console.log(`Name: ${nombre}`);
         console.log(`Address: ${direccion}`);
         console.log(`Email: ${email}`);
