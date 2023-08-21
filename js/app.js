@@ -2,6 +2,7 @@ const productos = [
     { id: 1, producto: "Group shirt", characteristic: "Black", precioSinIVA: 4500, IVA: 25, disponible: true },
     { id: 2, producto: "Member shirt", characteristic: "Black", precioSinIVA: 4500, IVA: 25, disponible: true },
     { id: 3, producto: "Lightstick", characteristic: "", precioSinIVA: 6500, IVA: 30, disponible: true },
+    { id: 4, producto: "Book", characteristic: "", precioSinIVA: 5155, IVA: 30, disponible: false },
     { id: 5, producto: "Necklace", characteristic: "Gold", precioSinIVA: 1500, IVA: 10, disponible: true },
     { id: 6, producto: "Find a Way album", characteristic: "Random version", precioSinIVA: 2700, IVA: 15, disponible: true },
     { id: 7, producto: "Be the change album", characteristic: "Version 1", precioSinIVA: 3000, IVA: 15, disponible: true },
@@ -15,7 +16,13 @@ function precioTotal(precioProducto, IVA) {
     return precioConIVA;
 }
 
+function isProductAvailable(productID) {
+    const product = productos.find(producto => producto.id === productID);
+    return product && product.disponible;
+}
+
 const today = new Date();
+const timeOfPurchase = `${today.toLocaleDateString()}, ${today.getHours().toString().padStart(2, '0')}:${today.getMinutes().toString().padStart(2, '0')}`;
 
 //Inicio
 alert("Welcome to Mayhem shop! We hope you find what you came looking for!")
@@ -28,11 +35,13 @@ const userInput = prompt("Please type the ID of the product you'd like to purcha
 
 if (userInput !== null) {
     const productoElegidoID = parseInt(userInput);
-    const productoElegido = productos.find(producto => producto.id === productoElegidoID);
+    
+    if (isProductAvailable(productoElegidoID)) {
+        const productoElegido = productos.find(producto => producto.id === productoElegidoID);
+        const indexID = productos.indexOf(productoElegido);
 
-    if (productoElegido) {
         const precioConIVA = precioTotal(productoElegido.precioSinIVA, productoElegido.IVA);
-        console.log(`Product: ${productoElegido.producto}, ${productoElegido.characteristic}`);
+        console.log(`Index: ${indexID}, Product: ${productoElegido.producto}, ${productoElegido.characteristic}`);
         console.log(`The total for ${productoElegido.producto} is $${precioConIVA.toFixed(2)}`);
 
         // Preguntar datos para mandar mail de confirmación
@@ -51,13 +60,19 @@ if (userInput !== null) {
 
          // Envío de datos
         alert(`Thank you ${nombre}! An email confirmation was sent to ${email} to confirm the purchase.`);
-        console.log(`Data on ${today.toLocaleDateString()}`);
+        console.log(`Data on ${timeOfPurchase}`);
         console.log(`Name: ${nombre}`);
         console.log(`Address: ${direccion}`);
         console.log(`Email: ${email}`);
     } else {
         alert("Product not found.");
+        console.log("Product not found.");
+        
+        if (isProductAvailable(productoElegidoID) === false) {
+            console.log("There's no more stock of the product. Please contact the provider.");
+        }
     }
 } else {
     alert("Wrong input. Please try again.");
 }
+
