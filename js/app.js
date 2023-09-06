@@ -34,22 +34,13 @@ function renderizarProductos(listaProductos) {
 
 // Obtener el modal y el botón para abrirlo
 const modal = document.getElementById('carritoModal');
-const abrirCarritoBtn = document.getElementById('abrirCarrito');
-const cerrarCarritoBtn = document.getElementById('cerrarCarrito');
+const abrirCarritoBtn = document.getElementById('botonAbrirCarrito');
 
-// Función para abrir el modal del carrito
+// Función para abrir y cerrar el modal del carrito
 abrirCarritoBtn.addEventListener('click', () => {
-    modal.style.display = 'block';
-});
-
-// Función para cerrar el modal del carrito
-cerrarCarritoBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-});
-
-// Cierra el modal si el usuario hace clic fuera de él
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
+    if (modal.style.display == 'none') {
+        modal.style.display = 'block';
+    } else {
         modal.style.display = 'none';
     }
 });

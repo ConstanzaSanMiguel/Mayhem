@@ -999,6 +999,11 @@ select:required:invalid {
   top: 20px;
 }
 
+#botonAbrirCarrito {
+  margin-left: auto;
+  display: block;
+}
+
 #carritoModal {
   opacity: 1;
   visibility: visible;
