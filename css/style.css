@@ -1090,6 +1090,13 @@ select:required:invalid {
   align-self: flex-end;
 }
 
+.close {
+  display: flex;
+  flex-direction: row-reverse;
+  color: white;
+  padding: 5px;
+}
+
 #endShopping, #pagarButton {
   display: block;
   text-align: center;
@@ -1118,6 +1125,23 @@ select:required:invalid {
   pointer-events: none;
 }
 
+@media (max-width: 1024px) {
+  .product-container {
+    grid-template-columns: repeat(3, minmax(20rem, 1fr));
+    grid-gap: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .product-container {
+    grid-template-columns: repeat(2, minmax(20rem, 1fr));
+  }
+}
+@media (max-width: 320px) {
+  .product-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
 #errorimage {
   min-height: 100vh;
   background-image: url(../images/error404.jpg);

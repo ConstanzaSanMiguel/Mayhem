@@ -179,16 +179,19 @@ endShopping.addEventListener('click', () => {
     const zipcode = document.getElementById('zipcode').value;
     const address = document.getElementById('address').value;
 
-    // Verificar si los campos del formulario están completos
-    if (!name || !email || !country || !city || !zipcode || !address) {
-        // Mostrar un mensaje de error si faltan campos
+    // Validar el formato del correo electrónico
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isEmailValid = emailRegex.test(email);
+
+    if (!name || !isEmailValid || !country || !city || !zipcode || !address) {
+        // Mensaje de error si faltan campos o el email es inválido
         Swal.fire({
             icon: 'error',
-            text: 'Please fill out every input before checkout.',
+            text: 'Please fill out every input correctly before checkout.',
             confirmButtonColor: '#762020',
         })
     } else {
-        // Si todos los campos están completos, se elimina el carrito y los datos
+        // Si todos los campos están completos y el correo electrónico es válido, eliminar el carrito y los datos
         localStorage.removeItem('carrito');
         sessionStorage.removeItem('carrito');
         carrito = [];

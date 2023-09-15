@@ -205,6 +205,12 @@
     }
 }
 
+.close {
+    display: flex;
+    flex-direction: row-reverse;
+    color: white;
+    padding: 5px;
+}
 
 #endShopping {
     display: block;
@@ -234,7 +240,29 @@
 
 /* estilos OUT OF STOCK*/
 .not-available {
-    background-color: $BordoOscuro!important; 
-    color: $GrisClaro!important; 
+    background-color: $BordoOscuro !important;
+    color: $GrisClaro !important;
     pointer-events: none;
+}
+
+///responsive
+
+@media (max-width: 1024px) {
+    .product-container {
+        grid-template-columns: repeat(3, minmax(20rem, 1fr));
+        grid-gap: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-container {
+        grid-template-columns: repeat(2, minmax(20rem, 1fr));
+    }
+}
+
+@media (max-width: 320px) {
+    .product-container {
+        display: flex;
+        flex-direction: column;
+    }
 }
