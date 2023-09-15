@@ -1,34 +1,44 @@
-let contenedorProductos = document.getElementById('misProductos');
+const contenedorProductos = document.getElementById('misProductos');
+let listaProductos;
 
-function renderizarProductos(listaProductos) {
-    for (const prod of listaProductos) {
-        contenedorProductos.innerHTML += `
+async function renderizarProductos() {
+    try {
+        const response = await fetch('../JSON/productos.json');
+        if (!response.ok) {
+            throw new Error('Product list not found.');
+        }
+        listaProductos = await response.json();
+        for (const prod of listaProductos) {
+            contenedorProductos.innerHTML += `
             <div class="product-grid">
-                <div class="card">        
-                        <img src=${prod.foto} alt="" class="card_img">
-                        <div class="card_content">
-                            <h2 class="card_title">${prod.producto}</h2>
-                            <p class="card_price">$${prod.precio}</p>
-                            <form action="#">
-                            <label for="size">Choose the color & size:</label>
-                                <select class="card_options" name="color" id="color">
-                                    <option value="black">Black</option>
-                                    <option value="white">White</option>
-                                </select>
-                                <select class="card_options" name="size" id="size">
-                                    <option value="XS">XS</option>
-                                    <option value="S">S</option>
-                                    <option value="M">M</option>
-                                    <option value="L">L</option>
-                                    <option value="XL">XL</option>
-                                    <option value="XXL">XXL</option>
-                                </select>
-                                <input type="submit" value="${prod.disponible ? 'Add to cart' : 'OUT OF STOCK'}" id="addToCartBtn" class="compra btn btn-primary ${prod.disponible ? '' : 'not-available'}" data-product-id="${prod.id}" onclick="${prod.disponible ? 'agregarACarrito' : ''}(${prod.id})" ${prod.disponible ? '' : 'disabled'}>
-                                </form>
-                        </div>
-                </div>
+            <div class="card">        
+                    <img src=${prod.foto} alt="" class="card_img">
+                    <div class="card_content">
+                        <h2 class="card_title">${prod.producto}</h2>
+                        <p class="card_price">$${prod.precio}</p>
+                        <form action="#">
+                        <label for="size">Choose the color & size:</label>
+                            <select class="card_options" name="color" id="color">
+                                <option value="black">Black</option>
+                                <option value="white">White</option>
+                            </select>
+                            <select class="card_options" name="size" id="size">
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                            <input type="submit" value="${prod.disponible ? 'Add to cart' : 'OUT OF STOCK'}" id="addToCartBtn" class="compra btn btn-primary ${prod.disponible ? '' : 'not-available'}" data-product-id="${prod.id}" onclick="${prod.disponible ? `agregarACarrito(${prod.id}, listaProductos)` : ''}" ${prod.disponible ? '' : 'disabled'}>
+                            </form>
+                    </div>
             </div>
-        `;
+        </div>
+    `;
+        }
+    } catch (error) {
+        console.error('Error loading products:', error);
     }
 }
 
@@ -38,20 +48,17 @@ const abrirCarritoBtn = document.getElementById('botonAbrirCarrito');
 
 // Función para abrir y cerrar el modal del carrito
 abrirCarritoBtn.addEventListener('click', () => {
-    if (modal.style.display == 'none') {
-        modal.style.display = 'block';
-    } else {
-        modal.style.display = 'none';
-    }
+    modal.style.display = (modal.style.display == 'none') ? 'block' : 'none';
 });
 
-renderizarProductos(productos);
+// Cargo los productos.
+renderizarProductos();
 
 let carrito = [];
 
-function agregarACarrito(productoId) {
+function agregarACarrito(productoId, listaProductos) {
     console.log(`Se llamó a agregarACarrito con productoId: ${productoId}`);
-    const prodACarro = productos.find((producto) => producto.id === productoId);
+    const prodACarro = listaProductos.find((producto) => producto.id === productoId);
     carrito.push(prodACarro);
     console.log("Producto agregado al carrito:", prodACarro);
 
@@ -93,6 +100,7 @@ function actualizarCarrito() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
+// Eliminar productos del carrito
 function quitarDelCarrito(productoId) {
     console.log(`Se llamó a quitarDelCarrito con productoId: ${productoId}`);
     for (let i = 0; i < carrito.length; i++) {
@@ -103,6 +111,10 @@ function quitarDelCarrito(productoId) {
     }
     actualizarCarrito();
 }
+
+// Buscar carrito en el local
+const carritoGuardado = localStorage.getItem('carrito');
+carritoGuardado ? (carrito = JSON.parse(carritoGuardado), actualizarCarrito()) : null;
 
 const totalCarritoElement = document.getElementById('totalCarrito');
 
@@ -116,18 +128,13 @@ function calcularTotal() {
     return total;
 }
 
-// Guardar carrito al local
-const carritoGuardado = localStorage.getItem('carrito');
-if (carritoGuardado) {
-    carrito = JSON.parse(carritoGuardado);
-    actualizarCarrito();
-}
-
+// Formulario
 const pagarButton = document.getElementById('pagarButton');
 const formularioPago = document.getElementById('formularioPago');
 const cerrarFormulario = document.getElementById('cerrarFormulario');
 const totalAPagarSpan = document.getElementById('totalAPagar');
 const datosEnvioForm = document.getElementById('datosEnvioForm');
+const endShopping = document.getElementById('endShopping')
 
 // Agregar evento click al botón Pagar
 pagarButton.addEventListener('click', () => {
@@ -139,24 +146,16 @@ pagarButton.addEventListener('click', () => {
 // Agregar evento click para cerrar el formulario modal
 cerrarFormulario.addEventListener('click', () => {
     formularioPago.style.display = 'none'; // Ocultar el formulario modal
-    carrito = [];
-    actualizarCarrito();
 });
 
 datosEnvioForm.addEventListener('submit', (event) => {
     event.preventDefault();
-
-    // Aquí puedes obtener los valores de los campos del formulario y realizar la acción de pago/envío
     const nombre = document.getElementById('name').value;
     const email = document.getElementById('email').value;
-    const country = document.getElementById('country').value;
-    const city = document.getElementById('city').value;
-    const zipcode = document.getElementById('zipcode').value;
-    const address = document.getElementById('address').value;
 
-    // Poner métodos de pago acá
-    // Enviar los datos a un servidor o procesarlos de la manera que desees
+    // Acá irían los métodos de pago
 
+    // Enviar los datos a un servidor
     Swal.fire({
         title: `Thanks for the purchase, ${nombre}!`,
         text: `The information has been sent to ${email}.`,
@@ -167,10 +166,33 @@ datosEnvioForm.addEventListener('submit', (event) => {
         confirmButtonColor: '#762020',
     })
 
-    // Vaciar el carrito
-    carrito = [];
-    actualizarCarrito();
-
     // Cerrar el formulario modal
     formularioPago.style.display = 'none';
+});
+
+// Vaciar el carrito y eliminar los datos con el formulario lleno
+endShopping.addEventListener('click', () => {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const country = document.getElementById('country').value;
+    const city = document.getElementById('city').value;
+    const zipcode = document.getElementById('zipcode').value;
+    const address = document.getElementById('address').value;
+
+    // Verificar si los campos del formulario están completos
+    if (!name || !email || !country || !city || !zipcode || !address) {
+        // Mostrar un mensaje de error si faltan campos
+        Swal.fire({
+            icon: 'error',
+            text: 'Please fill out every input before checkout.',
+            confirmButtonColor: '#762020',
+        })
+    } else {
+        // Si todos los campos están completos, se elimina el carrito y los datos
+        localStorage.removeItem('carrito');
+        sessionStorage.removeItem('carrito');
+        carrito = [];
+        actualizarCarrito();
+        modal.style.display = 'none'; // Cerrar el modal del carrito
+    }
 });
