@@ -8,34 +8,34 @@ async function renderizarProductos() {
             throw new Error('Product list not found.');
         }
         listaProductos = await response.json();
-        for (const prod of listaProductos) {
+        for (const { foto, producto, precio, disponible, id } of listaProductos) {
             contenedorProductos.innerHTML += `
-            <div class="product-grid">
-            <div class="card">        
-                    <img src=${prod.foto} alt="" class="card_img">
-                    <div class="card_content">
-                        <h2 class="card_title">${prod.producto}</h2>
-                        <p class="card_price">$${prod.precio}</p>
-                        <form action="#">
-                        <label for="size">Choose the color & size:</label>
-                            <select class="card_options" name="color" id="color">
-                                <option value="black">Black</option>
-                                <option value="white">White</option>
-                            </select>
-                            <select class="card_options" name="size" id="size">
-                                <option value="XS">XS</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                                <option value="XXL">XXL</option>
-                            </select>
-                            <input type="submit" value="${prod.disponible ? 'Add to cart' : 'OUT OF STOCK'}" id="addToCartBtn" class="compra btn btn-primary ${prod.disponible ? '' : 'not-available'}" data-product-id="${prod.id}" onclick="${prod.disponible ? `agregarACarrito(${prod.id}, listaProductos)` : ''}" ${prod.disponible ? '' : 'disabled'}>
+                <div class="product-grid">
+                    <div class="card">        
+                        <img src=${foto} alt="" class="card_img">
+                        <div class="card_content">
+                            <h2 class="card_title">${producto}</h2>
+                            <p class="card_price">$${precio}</p>
+                            <form action="#">
+                                <label for="size">Choose the color & size:</label>
+                                <select class="card_options" name="color" id="color">
+                                    <option value="black">Black</option>
+                                    <option value="white">White</option>
+                                </select>
+                                <select class="card_options" name="size" id="size">
+                                    <option value="XS">XS</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                    <option value="XXL">XXL</option>
+                                </select>
+                                <input type="submit" value="${disponible ? 'Add to cart' : 'OUT OF STOCK'}" id="addToCartBtn" class="compra btn btn-primary ${disponible ? '' : 'not-available'}" data-product-id="${id}" onclick="${disponible ? `agregarACarrito(${id}, listaProductos)` : ''}" ${disponible ? '' : 'disabled'}>
                             </form>
+                        </div>
                     </div>
-            </div>
-        </div>
-    `;
+                </div>
+            `;
         }
     } catch (error) {
         console.error('Error loading products:', error);
@@ -58,14 +58,14 @@ let carrito = [];
 
 function agregarACarrito(productoId, listaProductos) {
     console.log(`Se llamó a agregarACarrito con productoId: ${productoId}`);
-    const prodACarro = listaProductos.find((producto) => producto.id === productoId);
-    carrito.push(prodACarro);
-    console.log("Producto agregado al carrito:", prodACarro);
+    const { producto, foto, precio } = listaProductos.find((producto) => producto.id === productoId);
+    carrito.push({ producto, foto, precio });
+    console.log("Producto agregado al carrito:", producto);
 
     Toastify({
-        text: `${prodACarro.producto} added to the cart`,
+        text: `${producto} added to the cart`,
         gravity: "bottom",
-        avatar: `${prodACarro.foto}`,
+        avatar: `${foto}`,
         style: {
             background: "linear-gradient(to right, #332f2f, #762020)",
         }
@@ -82,15 +82,15 @@ function actualizarCarrito() {
     let total = 0; // Inicializar el total
 
     // Agregar productos al carrito y calcular el total
-    carrito.forEach((productos) => {
+    carrito.forEach(({ producto, precio, id }) => {
         carritoProductosContainer.innerHTML += `
             <div class="producto-en-carrito">
-                <p>${productos.producto} - $${productos.precio}</p>
-                <button onclick="quitarDelCarrito(${productos.id})">Eliminar</button>
+                <p>${producto} - $${precio}</p>
+                <button onclick="quitarDelCarrito(${id})">Eliminar</button>
             </div>
         `;
 
-        total += productos.precio; // Sumar el precio de cada producto al total
+        total += precio; // Sumar el precio de cada producto al total
     });
 
     // Mostrar el total actualizado en la página
@@ -159,9 +159,9 @@ datosEnvioForm.addEventListener('submit', (event) => {
     Swal.fire({
         title: `Thanks for the purchase, ${nombre}!`,
         text: `The information has been sent to ${email}.`,
-        imageUrl: '../images/band.jpg',
+        imageUrl: '../images/mayhemkoreanhearts.jpg',
         imageWidth: 400,
-        imageHeight: 300,
+        imageHeight: 400,
         imageAlt: 'Mayhem band',
         confirmButtonColor: '#762020',
     })
@@ -179,7 +179,7 @@ endShopping.addEventListener('click', () => {
     const zipcode = document.getElementById('zipcode').value;
     const address = document.getElementById('address').value;
 
-    // Validar el formato del correo electrónico
+    // Validar el formato del email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isEmailValid = emailRegex.test(email);
 
@@ -191,11 +191,12 @@ endShopping.addEventListener('click', () => {
             confirmButtonColor: '#762020',
         })
     } else {
-        // Si todos los campos están completos y el correo electrónico es válido, eliminar el carrito y los datos
+        // Si todos los campos están completos y el email es válido, elimina el carrito y los datos
+        console.log(`Email sent to ${name} & ${email} with all the information regarding this purchase.`)
         localStorage.removeItem('carrito');
         sessionStorage.removeItem('carrito');
         carrito = [];
         actualizarCarrito();
-        modal.style.display = 'none'; // Cerrar el modal del carrito
+        modal.style.display = 'none'; // Cierra el modal del carrito
     }
 });

@@ -1125,18 +1125,18 @@ select:required:invalid {
   pointer-events: none;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1025px) {
   .product-container {
     grid-template-columns: repeat(3, minmax(20rem, 1fr));
     grid-gap: 10px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 770px) {
   .product-container {
     grid-template-columns: repeat(2, minmax(20rem, 1fr));
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 426px) {
   .product-container {
     display: flex;
     flex-direction: column;

@@ -90,7 +90,7 @@
             <p>Subtotal: <span id="totalAPagar">$0.00</span></p>
             <form id="datosEnvioForm">
                 <label for="name">Name and surname</label><br>
-                <input type="text" id="name" required placeholder="Type your complete name"><br>
+                <input type="text" id="name" oninput="this.value = this.value.replace(/[^a-zA-Z, ]/, '')" required placeholder="Type your complete name"><br>
                 <label for="email">Email</label><br>
                 <input type="email" id="email" required placeholder="Type your email"><br>
                 <label for="paymentMethod">Choose payment method</label><br>
